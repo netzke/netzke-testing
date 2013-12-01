@@ -57,14 +57,23 @@ The gem provides a number of helpers that may help you writing less code and mak
           expectToSee header 'Empty'
           done()
 
+In order to enable these helpers, add the following line somewhere in your `RSpec.configure` block:
+
+    RSpec.configure do |config|
+      Netzke::Testing.rspec_init(config)
+      # ...
+    end
+
 Keep in mind the following:
 
   * the current set of helpers is in flux, and may be drastically changed sooner than you may expect
   * the helpers directly pollute the `window` namespace; if you decide you're better off without provided helpers,
   specify 'no-helpers=true' as an extra URL parameter
 
-See the [source code](TODO) for currently implemented helpers. Also, refer to other Netzke gems source code (like
-netzke-core and netzke-basepack) to see examples using the helpers.
+See the [source
+code](https://github.com/netzke/netzke-testing/tree/master/app/assets/javascripts/netzke/testing/helpers) for currently
+implemented helpers (TODO: document them). Also, refer to other Netzke gems source code (like netzke-core and
+    netzke-basepack) to see examples using the helpers.
 
 ## Testing with selenium webdriver
 
