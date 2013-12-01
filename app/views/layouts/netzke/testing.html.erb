@@ -16,13 +16,18 @@
         Netzke.mochaRunner = mocha.run(function(){Netzke.mochaDone = true;});
       });
     </script>
-    <% if params["no-helpers"].nil? %>
+    <% if !params["no-helpers"] %>
       <%= javascript_include_tag "/assets/netzke/testing/helpers/actions" %>
       <%= javascript_include_tag "/assets/netzke/testing/helpers/queries" %>
       <%= javascript_include_tag "/assets/netzke/testing/helpers/expectations" %>
       <%= javascript_include_tag "/assets/netzke/testing/helpers/grid" %>
       <%= javascript_include_tag "/assets/netzke/testing/helpers/form" %>
     <% end %>
+
+    <% for path in Netzke::Testing.custom_js %>
+      <%= javascript_include_tag path %>
+    <% end %>
+
     <%= javascript_include_tag "/netzke/specs/#{params[:spec]}" %>
   <% end %>
 
