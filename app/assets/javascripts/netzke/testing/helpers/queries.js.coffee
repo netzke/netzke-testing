@@ -11,7 +11,9 @@ Ext.apply window,
     Ext.DomQuery.select("div.x-panel-body:contains(" + text + ")")[0] || 'panel with content ' + text
 
   button: (text) ->
-    Ext.ComponentQuery.query("button{isVisible(true)}[text='"+text+"']")[0] || "button " + text
+    button = Ext.ComponentQuery.query("button{isVisible(true)}[text='"+text+"']")[0]
+    button ||= Ext.ComponentQuery.query("button{isVisible(true)}[tooltip='"+text+"']")[0]
+    button || "button " + text
 
   tool: (type) ->
     Ext.ComponentQuery.query("tool{isVisible(true)}[type='"+type+"']")[0] || 'tool ' + type
