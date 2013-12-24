@@ -1,3 +1,3 @@
 Netzke::Testing.setup do |config|
-  config.custom_js = ['assets/javascripts/custom.js']
+  config.custom_js = ['javascripts/custom.js']
 end

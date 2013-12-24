@@ -8,7 +8,7 @@ feature Netzke::TestingController do
 
   it 'includes custom js into page' do
     visit '/netzke/components/Foo?spec=true'
-    page.html.should include '<script src="/javascripts/assets/javascripts/custom.js"></script>'
+    page.html.should include '<script src="/assets/javascripts/custom.js"'
   end
 
   it 'includes JS helpers' do
