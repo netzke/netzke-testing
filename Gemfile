@@ -7,4 +7,5 @@ gem 'netzke-core', path: '../netzke-core'
 
 group :test do
   gem 'capybara'
+  gem 'selenium-webdriver'
 end
