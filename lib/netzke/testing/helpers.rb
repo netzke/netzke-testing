@@ -1,8 +1,8 @@
 module Netzke::Testing::Helpers
   def run_mocha_spec(path, options = {})
-    component = options[:component] || path.camelcase
+    @component = options[:component] || path.camelcase
     locale = options[:locale]
-    url = netzke_components_path(class: component, spec: path)
+    url = netzke_components_path(class: @component, spec: path)
     url << "&locale=#{locale}" if locale
 
     visit url
@@ -18,8 +18,8 @@ module Netzke::Testing::Helpers
     loop do
       page.execute_script("return Netzke.mochaDone;") ? break : sleep(0.1)
 
-      # no specs are supposed to run longer than 10 seconds
-      raise "Timeout running JavaScript specs for #{component}" if Time.now > start + 10.seconds
+      # no specs are supposed to run longer than 100 seconds
+      raise "Timeout running JavaScript specs for #{@component}" if Time.now > start + 100.seconds
     end
 
   rescue Selenium::WebDriver::Error::JavascriptError => e
@@ -31,17 +31,21 @@ module Netzke::Testing::Helpers
   end
 
   def assert_mocha_results
-    success = page.execute_script(<<-JS)
-      var stats = Netzke.mochaRunner.stats;
-      return stats.failures == 0 && stats.tests !=0
+    result = page.execute_script(<<-JS)
+      var runner = Netzke.mochaRunner;
+      return {
+        test: runner.test.title,
+        success: runner.stats.failures == 0 && runner.stats.tests !=0,
+        error: runner.test.err && runner.test.err.toString()
+      }
     JS
 
-    if !success
+    if !result["success"]
       # give some time for visual examination of the problem
       # (TODO: make configurable)
       sleep 5
 
-      raise "JS expectations failed"
+      raise "Test failed: #{result["test"]}\n#{result["error"]}"
     end
   end
 end

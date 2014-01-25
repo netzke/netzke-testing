@@ -17,10 +17,10 @@ class Netzke::TestingController < ApplicationController
   def spec_file(name)
     spec_root = Pathname.new(Netzke::Testing.spec_root || Rails.root)
 
-    path = spec_root.join "spec/javascripts/#{name}_spec.js.coffee"
+    path = spec_root.join "spec/features/javascripts/#{name}_spec.js.coffee"
 
     if !File.exists?(File.expand_path(path, __FILE__))
-      path = spec_root.join "spec/javascripts/#{name}.js.coffee"
+      path = spec_root.join "spec/features/javascripts/#{name}.js.coffee"
     end
 
     File.read(File.expand_path(path, __FILE__))

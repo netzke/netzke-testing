@@ -8,7 +8,7 @@ end
 
 module Netzke
   module Testing
-    # Path to the root of your JS specs
+    # Path to the root of your JS specs (which are part of integration tests)
     mattr_accessor :spec_root
 
     # JS paths that should be included in the testing template

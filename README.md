@@ -24,8 +24,8 @@ the height by providing the `height` parameter in the URL:
 
 ## Testing components with Mocha and Expect.js
 
-Place the Mocha specs (written in Coffeescript) for your components inside `spec/javascripts` folder. An example spec
-may look like this (in `spec/javascripts/user_grid.js.coffee`):
+Place the Mocha specs (written in Coffeescript) for your components inside `spec/features/javascripts` folder. An
+example spec may look like this (in `spec/features/javascripts/user_grid.js.coffee`):
 
     describe 'UserGrid', ->
       it 'shows proper title', ->
@@ -41,8 +41,8 @@ Specs can be structured into directories. For example, let's say we have a names
     class Admin::UserGrid < Netzke::Basepack::Grid
     end
 
-It makes sense to put the corresponding specs in `spec/javascripts/admin/user_grid.js.coffee`. In this case, the URL
-to run the Mocha specs will be:
+It makes sense to put the corresponding specs in `spec/features/javascripts/admin/user_grid.js.coffee`. In this case,
+   the URL to run the Mocha specs will be:
 
     http://localhost:3000/netzke/components/UserGrid?spec=admin/user_grid
 
@@ -81,10 +81,11 @@ Generate the `netzke_mocha_spec.rb` file that will automatically run the specs t
 
     rails g netzke_testing
 
-This spec will pick up all the `*_spec.js.coffee` files from `spec/javascripts` folder and generate an `it` clause for
-each of them. Let's say we want to create the spec for UserGrid. For this we name the spec file
-`spec/javascripts/user_grid_spec.js.coffee`. And the other way around: when `netzke_mocha_spec.rb` finds a file called
-`spec/javascripts/order_grid_spec.js.coffee`, it'll assume existance of `OrderGrid` component that should be tested.
+This spec will pick up all the `*_spec.js.coffee` files from `spec/features/javascripts` folder and generate an `it`
+clause for each of them. Let's say we want to create the spec for UserGrid. For this we name the spec file
+`spec/features/javascripts/user_grid_spec.js.coffee`. And the other way around: when `netzke_mocha_spec.rb` finds a file
+called `spec/features/javascripts/order_grid_spec.js.coffee`, it'll assume existance of `OrderGrid` component that
+should be tested.
 
 ## Mixing client- and server-side testing code
 
@@ -109,7 +110,7 @@ You can explicitely specify a component to run the spec on (in order to override
     run_mocha_spec 'grid_with_destructive_button', component: 'UserGrid'
 
 ---
-Copyright (c) 2008-2013 [Max Gorin](https://twitter.com/uptomax), released under the MIT license (see LICENSE).
+Copyright (c) 2008-2014 [Max Gorin](https://twitter.com/uptomax), released under the MIT license (see LICENSE).
 
 **Note** that Ext JS is licensed [differently](http://www.sencha.com/products/extjs/license/), and you may need to
 purchase a commercial license in order to use it in your projects!
