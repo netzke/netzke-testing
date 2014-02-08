@@ -109,8 +109,13 @@ You can explicitely specify a component to run the spec on (in order to override
 
     run_mocha_spec 'grid_with_destructive_button', component: 'UserGrid'
 
+## Requirements
+
+* Ruby >= 1.9.3
+* Rails >= 3.2.0
+
 ---
-Copyright (c) 2008-2014 [Max Gorin](https://twitter.com/uptomax), released under the MIT license (see LICENSE).
+Copyright (c) 2014 [Max Gorin](https://twitter.com/uptomax), released under the MIT license (see LICENSE).
 
 **Note** that Ext JS is licensed [differently](http://www.sencha.com/products/extjs/license/), and you may need to
 purchase a commercial license in order to use it in your projects!
