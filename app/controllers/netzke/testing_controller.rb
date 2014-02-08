@@ -1,6 +1,8 @@
 require 'coffee-script'
 
 class Netzke::TestingController < ApplicationController
+  before_filter :set_locale
+
   def components
     component_name = params[:class].gsub("::", "_").underscore
     render :inline => "<%= netzke :#{component_name}, :class_name => '#{params[:class]}', :height => #{params[:height] || 400} %>",
@@ -13,6 +15,11 @@ class Netzke::TestingController < ApplicationController
   end
 
   private
+
+  def set_locale
+    # if params[:locale] is nil then I18n.default_locale will be used
+    I18n.locale = params[:locale]
+  end
 
   def spec_file(name)
     spec_root = Pathname.new(Netzke::Testing.spec_root || Rails.root)
