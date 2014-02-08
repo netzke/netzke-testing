@@ -84,6 +84,18 @@ Ext.apply window,
         return
     res
 
+  eastRegion: ->
+    Ext.ComponentQuery.query("[region=east]")[0]
+
+  westRegion: ->
+    Ext.ComponentQuery.query("[region=west]")[0]
+
+  southRegion: ->
+    Ext.ComponentQuery.query("[region=south]")[0]
+
+  northRegion: ->
+    Ext.ComponentQuery.query("[region=north]")[0]
+
   _componentLike:(type,attr,value)->
     Ext.ComponentQuery.query(type+'['+attr+'='+value+']')[0] || type + " with " + attr + " '" + value + "'"
 # alias
