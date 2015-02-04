@@ -6,9 +6,9 @@
   <%= load_netzke %>
 
   <% if params[:spec] %>
-    <%= javascript_include_tag "/assets/netzke/testing/expect/expect.js" %>
-    <%= javascript_include_tag "/assets/netzke/testing/mocha/mocha.js" %>
-    <%= stylesheet_link_tag "/assets/netzke/testing/mocha/mocha.css" %>
+    <%= javascript_include_tag "netzke/testing/expect/expect.js" %>
+    <%= javascript_include_tag "netzke/testing/mocha/mocha.js" %>
+    <%= stylesheet_link_tag "netzke/testing/mocha/mocha.css" %>
     <script>
       mocha.setup('bdd');
       mocha.setup({ignoreLeaks: true, slow: 500, timeout: 5000});

@@ -1,6 +1,6 @@
 require 'coffee-script'
 
-class Netzke::TestingController < ApplicationController
+class Netzke::TestingController < ActionController::Base
   before_filter :set_locale
 
   def components
