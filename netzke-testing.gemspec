@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "netzke-testing"
   spec.version       = Netzke::Testing::VERSION
   spec.authors       = ["Max Gorin"]
-  spec.email         = ["gorinme@gmail.com"]
+  spec.email         = ["max@goodbitlabs.com"]
   spec.summary       = "Testing helpers for Netzke applications and gems"
   spec.description   = "Provides help with developing and testing Netzke components"
   spec.homepage      = "http://netzke.org"
@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "coffee-script"
-  spec.add_development_dependency 'netzke-core', '~> 0.11.0'
+  spec.add_development_dependency 'netzke-core', '~> 0.12.0.beta'
 end
