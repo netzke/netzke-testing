@@ -24,8 +24,7 @@ module Netzke::Testing::Helpers
 
   rescue Selenium::WebDriver::Error::JavascriptError => e
     # give some time for visual examination of the problem
-    # (TODO: make configurable)
-    sleep 5
+    # sleep 5
 
     raise e
   end
@@ -33,19 +32,25 @@ module Netzke::Testing::Helpers
   def assert_mocha_results
     result = page.execute_script(<<-JS)
       var runner = Netzke.mochaRunner;
+      var errors = [];
+      Ext.Array.each(runner.suite.suites[0].tests, function(t) { if (t.err) errors.push([t.title, t.err.toString()]) });
       return {
         test: runner.test.title,
         success: runner.stats.failures == 0 && runner.stats.tests !=0,
-        error: runner.test.err && runner.test.err.toString()
+        error: runner.test.err && runner.test.err.toString(),
+        errors: errors
       }
     JS
 
     if !result["success"]
       # give some time for visual examination of the problem
-      # (TODO: make configurable)
-      sleep 5
+      # sleep 500
 
-      raise "Test failed: #{result["test"]}\n#{result["error"]}"
+      errors = result["errors"].each_with_index.map do |(title, error), i|
+        "#{i+1}) #{title}\n#{error}\n\n"
+      end
+
+      raise "Failures:\n#{errors.join}"
     end
   end
 end

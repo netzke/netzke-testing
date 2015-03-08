@@ -113,6 +113,7 @@ You can explicitely specify a component to run the spec on (in order to override
 
 * Ruby >= 2.0.0
 * Rails >= 4.2.0
+* Ext JS = 5.1.0
 
 ---
 Copyright (c) 2015 [Max Gorin](https://twitter.com/uptomax), released under the MIT license (see LICENSE).

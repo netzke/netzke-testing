@@ -71,4 +71,3 @@ Ext.apply window,
         combo.select rec
         combo.fireEvent('select', combo, rec )
         combo.collapse()
-

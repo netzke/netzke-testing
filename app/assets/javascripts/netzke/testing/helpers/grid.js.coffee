@@ -9,8 +9,7 @@ Ext.apply window,
     g = g || this.grid()
     editor = g.getPlugin('celleditor')
     column = g.headerCt.items.findIndex('name', field) - 1
-    window.editor = editor
-    editor.startEditByPosition({row: g.getSelectionModel().getCurrentPosition().row, column: column})
+    editor.startEditByPosition({row: g.getSelectionModel().getCurrentPosition().rowIdx, column: column})
     editor.activeEditor.field.onTriggerClick()
 
   # Example:
@@ -69,7 +68,7 @@ Ext.apply window,
       visibleColumns.push(c) if c.isVisible()
 
     i = -1
-    return Ext.Array.map(Ext.DomQuery.select('tr[data-recordid="'+record.internalId+'"] td div'), (cell) ->
+    return Ext.Array.map(Ext.DomQuery.select('table[data-recordid="'+record.internalId+'"] tbody tr td div'), (cell) ->
       i++
       if visibleColumns[i].attrType == 'boolean'
         record.get(visibleColumns[i].name)
