@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "coffee-script"
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rails", "~> 4.2.0"
@@ -24,6 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "coffee-script"
   spec.add_development_dependency 'netzke-core', '~> 0.12.0.beta'
 end
