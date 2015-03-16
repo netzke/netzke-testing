@@ -112,11 +112,11 @@ You can explicitely specify a component to run the spec on (in order to override
 ## Requirements
 
 * Ruby >= 2.0.0
-* Rails >= 4.2.0
+* Rails ~> 4.2.0
 * Ext JS = 5.1.0
 
 ---
-Copyright (c) 2015 [Max Gorin](https://twitter.com/uptomax), released under the MIT license (see LICENSE).
+© 2015 [Max Gorin](https://twitter.com/mxgrn), released under the MIT license (see LICENSE).
 
 **Note** that Ext JS is licensed [differently](http://www.sencha.com/products/extjs/license/), and you may need to
 purchase a commercial license in order to use it in your projects!

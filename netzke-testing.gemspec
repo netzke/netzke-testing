@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency 'netzke-core', '~> 0.12.0.beta'
+  spec.add_development_dependency 'netzke-core', '~> 0.12.0'
 end
