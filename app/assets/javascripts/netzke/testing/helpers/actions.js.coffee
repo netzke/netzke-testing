@@ -25,7 +25,7 @@ Ext.apply window,
 
         # this way we ensure another 20ms cycle before we issue a callback
         i = 100 if Netzke.ajaxCount == 0
-      , 100
+      , 200
     else
       delay = arguments[0]
       callback = arguments[1]
