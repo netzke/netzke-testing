@@ -11,7 +11,7 @@
     <%= stylesheet_link_tag "netzke/testing/mocha/mocha.css" %>
     <script>
       mocha.setup('bdd');
-      mocha.setup({ignoreLeaks: true, slow: 500, timeout: 5000});
+      mocha.setup({ignoreLeaks: true, slow: 500, timeout: <%= (params[:timeout].to_i || Netzke::Testing.js_timeout) * 1000 %>});
       Ext.onReady(function(){
         Netzke.mochaRunner = mocha.run(function(){Netzke.mochaDone = true;});
       });

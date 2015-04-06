@@ -109,6 +109,23 @@ You can explicitely specify a component to run the spec on (in order to override
 
     run_mocha_spec 'grid_with_destructive_button', component: 'UserGrid'
 
+## Setting timeout for longer running JS specs
+
+Netzke-testing by default assumes that your specs do not take longer than 5 seconds, and mark them failed if they do. If your spec are as complex as taking longer than that, you can increase this value in an initializer, e.g.:
+
+    # in config/initializers/netzke.rb
+    Netzke::Testing.setup do |config|
+      config.js_timeout = 10 # seconds
+    end
+
+You could also set this in `spec_helper.rb` like this:
+
+    Netzke::Testing.js_timeout = 10
+
+However, keep in mind, that this won't have effect on running specs manually in the browser (by specifying the `spec` URL parameter, as shown above). For this case, you may provide the `timeout` URL paramter (takes precedence over `Netzke::Testing.js_timeout`):
+
+    http://localhost:3000/netzke/components/UserGrid?spec=user_grid&timeout=10
+
 ## Requirements
 
 * Ruby >= 2.0.0

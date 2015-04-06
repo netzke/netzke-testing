@@ -15,6 +15,10 @@ module Netzke
     mattr_accessor :custom_js
     @@custom_js = []
 
+    # Timeout (seconds) for JS spec execution
+    mattr_accessor :js_timeout
+    @@js_timeout = 5
+
     def self.rspec_init(rspec_config)
       @@spec_root = Pathname.new(caller.first).join("../..")
       rspec_config.include(Netzke::Testing::Helpers)
