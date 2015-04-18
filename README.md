@@ -105,9 +105,15 @@ helper provided by the `netzke_testing` gem. Here's an example (in `spec/user_gr
 
 The `run_mocha_spec` here will run a Mocha spec from `spec/grid_with_destructive_button.js.coffee`.
 
-You can explicitely specify a component to run the spec on (in order to override the convention):
+You can explicitely specify a component to run the spec on:
 
     run_mocha_spec 'grid_with_destructive_button', component: 'UserGrid'
+
+To investigate the problem in case of a failing Mocha spec, set `stop_on_error` to `true` (this will keep the browser open on the failed spec):
+
+    run_mocha_spec 'grid_with_destructive_button', stop_on_error: true
+
+(in this case you'll have to terminate the specs by pressing `ctrl+c`)
 
 ## Setting timeout for longer running JS specs
 

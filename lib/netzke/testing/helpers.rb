@@ -7,13 +7,12 @@ module Netzke::Testing::Helpers
 
     visit url
 
-    # Wait while the test is running
-    wait_for_javascript
+    wait_for_javascript(options[:stop_on_error])
 
-    assert_mocha_results
+    assert_mocha_results(options[:stop_on_error])
   end
 
-  def wait_for_javascript
+  def wait_for_javascript(stop_on_error = false)
     start = Time.now
     loop do
       page.execute_script("return Netzke.mochaDone;") ? break : sleep(0.1)
@@ -23,13 +22,11 @@ module Netzke::Testing::Helpers
     end
 
   rescue Selenium::WebDriver::Error::JavascriptError => e
-    # give some time for visual examination of the problem
-    # sleep 5
-
+    sleep 1.year if stop_on_error
     raise e
   end
 
-  def assert_mocha_results
+  def assert_mocha_results(stop_on_error = false)
     result = page.execute_script(<<-JS)
       var runner = Netzke.mochaRunner;
       var errors = [];
@@ -43,14 +40,14 @@ module Netzke::Testing::Helpers
     JS
 
     if !result["success"]
-      # give some time for visual examination of the problem
-      # sleep 500
+      sleep 1.year if stop_on_error
 
       errors = result["errors"].each_with_index.map do |(title, error), i|
         "#{i+1}) #{title}\n#{error}\n\n"
       end
 
       raise "Failures:\n#{errors.join}"
+      raise "Test failed: #{result["test"]}\n#{result["error"]}"
     end
   end
 end
