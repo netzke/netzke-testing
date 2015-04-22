@@ -1,7 +1,11 @@
 Ext.apply window,
-  grid: (title) ->
-    if title
-      Ext.ComponentQuery.query('grid[title="'+title+'"]')[0]
+  grid: (value, lookup) ->
+    # default to query by title for backwards compatibility
+    lookup = lookup || 'title'
+    if value && lookup == 'title'
+      Ext.ComponentQuery.query('grid[title="'+value+'"]')[0]
+    else if value && lookup == 'name'
+      Ext.ComponentQuery.query('grid[name="'+value+'"]')[0]
     else
       Ext.ComponentQuery.query('grid{isVisible(true)}')[0]
 
@@ -57,6 +61,16 @@ Ext.apply window,
       out.push(if assocValue then assocValue else r.get(name))
     out
 
+  # Example:
+  # valueInCell 'author__name', 2
+  valueInCell: (column, row, params) ->
+    params ?= {}
+    grid = params.in || this.grid()
+    r = grid.getStore().getAt(row)
+
+    assocValue = r.get('meta').associationValues[column]
+    if assocValue then assocValue else r.get(column)
+
   selectAllRows: (params) ->
     params ?= {}
     grid = params.in || this.grid()
@@ -82,6 +96,7 @@ Ext.apply window,
         cell.innerHTML
     )
 
+  # Examples:
   # selectLastRow()
   # selectLastRow in: grid('Book')
   selectLastRow: (params) ->
@@ -89,12 +104,21 @@ Ext.apply window,
     grid = params.in || this.grid()
     grid.getSelectionModel().select(grid.getStore().last())
 
+  # Examples:
   # selectFirstRow()
   # selectFirstRow in: grid('Book')
   selectFirstRow: (params) ->
     params ?= {}
     grid = params.in || this.grid()
     grid.getSelectionModel().select(grid.getStore().first())
+
+  # Examples:
+  # selectRow 5
+  # selectRow 5, in: grid('Book')
+  selectRow: (n, params) ->
+    params ?= {}
+    grid = params.in || this.grid()
+    grid.getSelectionModel().select(n)
 
   # Example:
   # editLastRow {title: 'Foo', exemplars: 10}
