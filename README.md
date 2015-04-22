@@ -132,6 +132,17 @@ However, keep in mind, that this won't have effect on running specs manually in 
 
     http://localhost:3000/netzke/components/UserGrid?spec=user_grid&timeout=10
 
+## Asynchronous helpers
+
+Asynchronous helpers like `wait` can either call the provided callback function, or (if none was provided) return a promise, so you can do:
+
+    wait().
+    .then ->
+      doSomething()
+      wait()
+    .then
+      doSomeMore()
+
 ## Requirements
 
 * Ruby >= 2.0.0

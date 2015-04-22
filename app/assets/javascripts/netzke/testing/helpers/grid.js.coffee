@@ -36,11 +36,17 @@ Ext.apply window,
       record.set(key, value)
 
   selectAssociation: (attr, value, callback) ->
-    expandRowCombo attr
-    wait ->
-      select value, in: combobox(attr)
-      # wait ->
-      callback.call()
+    action = (cb) ->
+      expandRowCombo attr
+      wait ->
+        select value, in: combobox(attr)
+        cb()
+
+    if callback
+      action(callback)
+    else
+      new Promise (resolve, reject) ->
+        action(resolve)
 
   valuesInColumn: (name, params) ->
     params ?= {}
