@@ -5,12 +5,12 @@
   <%= load_netzke(minified: false) %>
 
   <% if params[:spec] %>
-    # dependencies
+    <%# dependencies %>
     <%= javascript_include_tag "netzke/testing/expect/expect.js" %>
     <%= javascript_include_tag "netzke/testing/mocha/mocha.js" %>
     <%= stylesheet_link_tag "netzke/testing/mocha/mocha.css" %>
 
-    # mocha config
+    <%# mocha config %>
     <script>
       mocha.setup('bdd');
       mocha.setup({ignoreLeaks: true, slow: 500, timeout: <%= (params[:timeout].to_i || Netzke::Testing.js_timeout) * 1000 %>});
@@ -19,7 +19,7 @@
       });
     </script>
 
-    # netzke-testing helpers
+    <%# netzke-testing helpers %>
     <% if !params["no-helpers"] %>
       <%= javascript_include_tag "netzke/testing/helpers/actions" %>
       <%= javascript_include_tag "netzke/testing/helpers/queries" %>
@@ -28,10 +28,10 @@
       <%= javascript_include_tag "netzke/testing/helpers/form" %>
     <% end %>
 
-    # custom JS (e.g. additional helpers)
+    <%# custom JS (e.g. additional helpers) %>
     <%= javascript_include_tag "netzke/testing" %>
 
-    # actual spec
+    <%# actual spec %>
     <%= javascript_include_tag "/netzke/specs/#{params[:spec]}" %>
   <% end %>
 
