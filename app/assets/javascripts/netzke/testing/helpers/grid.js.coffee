@@ -3,11 +3,14 @@ Ext.apply window,
     # default to query by title for backwards compatibility
     lookup = lookup || 'title'
     if value && lookup == 'title'
-      Ext.ComponentQuery.query('grid[title="'+value+'"]')[0]
+      Ext.ComponentQuery.query('grid[title="'+value+'"]')[0] ||
+      Ext.ComponentQuery.query('treepanel[title="'+value+'"]')[0]
     else if value && lookup == 'name'
-      Ext.ComponentQuery.query('grid[name="'+value+'"]')[0]
+      Ext.ComponentQuery.query('grid[name="'+value+'"]')[0] ||
+      Ext.ComponentQuery.query('treepanel[name="'+value+'"]')[0]
     else
-      Ext.ComponentQuery.query('grid{isVisible(true)}')[0]
+      Ext.ComponentQuery.query('grid{isVisible(true)}')[0] ||
+      Ext.ComponentQuery.query('treepanel{isVisible(true)}')[0]
 
   expandRowCombo: (field, params) ->
     g = g || this.grid()
