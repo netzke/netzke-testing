@@ -1,4 +1,4 @@
-# Netzke Testing
+# Netzke Testing [![Gem Version](https://fury-badge.herokuapp.com/rb/netzke-testing.png)](http://badge.fury.io/rb/netzke-testing)
 
 This gem helps with development and testing of Netzke components. In parcticular, it helps you with:
 
@@ -74,6 +74,20 @@ See the [source
 code](https://github.com/netzke/netzke-testing/tree/master/app/assets/javascripts/netzke/testing/helpers) for currently
 implemented helpers (TODO: document them). Also, refer to other Netzke gems source code (like netzke-core and
 netzke-basepack) to see examples using the helpers.
+
+## Adding custom spec helpers
+
+You may add (or require, by means of Sprockets) additional helpers in `app/assets/javascripts/netzke/testing.js`, which will be included in the testing template *after* the helpers provided by netzke-testing. For example:
+
+    // in app/assets/javascripts/netzke/testing.js
+    //= require_tree ./testing
+
+    # in app/assets/javascripts/netzke/testing/grid.js.coffee
+    Ext.apply window,
+      enableColumnFilter: (column, value) ->
+      # ...
+
+After this the `enableColumnFilter` helper will be available in your Mocha specs.
 
 ## Testing with selenium webdriver
 
