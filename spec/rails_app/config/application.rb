@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require 'netzke-core'
+$LOAD_PATH.unshift(File.expand_path("../../../../lib", __FILE__))
 require 'netzke-testing'
 
 module RailsApp
