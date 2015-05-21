@@ -44,7 +44,7 @@ Ext.apply window,
       #   waitAtLeast50Seconds()
       if Ext.isFunction(arguments[1])
         delay = arguments[0]
-        callback = arguments[1]
+        resolve = arguments[1]
         setInterval ->
           waitInCycle(resolve)
         , delay
