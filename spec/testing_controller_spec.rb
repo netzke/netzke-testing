@@ -6,11 +6,6 @@ feature Netzke::TestingController do
     page.should have_selector "#foo-netzke"
   end
 
-  it 'includes custom js into page' do
-    visit '/netzke/components/Foo?spec=true'
-    page.html.should include '<script src="/assets/custom.js"'
-  end
-
   it 'includes JS helpers' do
     visit '/netzke/components/Foo?spec=true'
     page.html.should include 'assets/netzke/testing/helpers/queries'
