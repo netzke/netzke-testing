@@ -13,7 +13,7 @@ Ext.apply window,
       Ext.ComponentQuery.query('treepanel{isVisible(true)}')[0]
 
   expandRowCombo: (field, params) ->
-    g = g || this.grid()
+    g = g || @grid()
     editor = g.getPlugin('celleditor')
     column = g.headerCt.items.findIndex('name', field) - 1
     editor.startEditByPosition({row: g.getSelectionModel().getCurrentPosition().rowIdx, column: column})
@@ -31,13 +31,13 @@ Ext.apply window,
 
   addRecord: (recordData, params) ->
     params = params || []
-    grid = params.to || this.grid()
+    grid = params.to || @grid()
     record = grid.getStore().add(recordData)
     grid.getSelectionModel().select(grid.getStore().last())
 
   updateRecord: (recordData, params) ->
     params = params || []
-    grid = params.to || this.grid()
+    grid = params.to || @grid()
     record = grid.getSelectionModel().getSelection()[0]
     for key,value of recordData
       record.set(key, value)
@@ -55,35 +55,36 @@ Ext.apply window,
       new Promise (resolve, reject) ->
         action(resolve)
 
-  valuesInColumn: (name, params) ->
-    params ?= {}
-    grid = params.in || this.grid()
+  valuesInColumn: (name, params = {}) ->
+    grid = params.in || @grid()
     out = []
+    i = 0
     grid.getStore().each (r) ->
-      assocValue = r.get('meta').associationValues[name]
-      out.push(if assocValue then assocValue else r.get(name))
+      out.push valueInCell(name, i++, params)
+
     out
 
   # Example:
   # valueInCell 'author__name', 2
-  valueInCell: (column, row, params) ->
-    params ?= {}
-    grid = params.in || this.grid()
-    r = grid.getStore().getAt(row)
+  valueInCell: (column, rowIndex, params = {}) ->
+    grid = params.in || @grid()
+    r = grid.getStore().getAt(rowIndex)
+    column = grid.headerCt.items.findBy (c) -> c.name is column
 
-    assocValue = r.get('meta').associationValues[column]
-    if assocValue then assocValue else r.get(column)
+    el = Ext.DomQuery.select("table[data-recordid=#{r.internalId}] tbody tr td.x-grid-cell-#{column.id} div")[0]
+
+    el.innerHTML
 
   selectAllRows: (params) ->
     params ?= {}
-    grid = params.in || this.grid()
+    grid = params.in || @grid()
     grid.getSelectionModel().selectAll()
 
   # rowDisplayValues in: grid('Books'), of: grid('Books').getStore().last()
   # Without parameters, assumes the first found grid and the selected row
   rowDisplayValues: (params) ->
     params ?= {}
-    grid = params.in || this.grid()
+    grid = params.in || @grid()
     record = params.of || grid.getSelectionModel().getSelection()[0]
 
     visibleColumns = []
@@ -104,7 +105,7 @@ Ext.apply window,
   # selectLastRow in: grid('Book')
   selectLastRow: (params) ->
     params ?= {}
-    grid = params.in || this.grid()
+    grid = params.in || @grid()
     grid.getSelectionModel().select(grid.getStore().last())
 
   # Examples:
@@ -112,7 +113,7 @@ Ext.apply window,
   # selectFirstRow in: grid('Book')
   selectFirstRow: (params) ->
     params ?= {}
-    grid = params.in || this.grid()
+    grid = params.in || @grid()
     grid.getSelectionModel().select(grid.getStore().first())
 
   # Examples:
@@ -120,7 +121,7 @@ Ext.apply window,
   # selectRow 5, in: grid('Book')
   selectRow: (n, params) ->
     params ?= {}
-    grid = params.in || this.grid()
+    grid = params.in || @grid()
     grid.getSelectionModel().select(n)
 
   # Example:
@@ -134,6 +135,6 @@ Ext.apply window,
       record.set(key, data[key])
 
   completeEditing: (g) ->
-    g = g || this.grid()
+    g = g || @grid()
     e = g.getPlugin('celleditor')
     e.completeEdit()
