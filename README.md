@@ -7,7 +7,7 @@ This gem helps with development and testing of Netzke components. In parcticular
 
 Usage:
 
-    gem 'netzke_testing'
+    gem 'netzke-testing'
 
 ## Isolated component development
 
@@ -159,7 +159,7 @@ Asynchronous helpers like `wait` can either call the provided callback function,
 
 ## Requirements
 
-* Ruby >= 2.0.0
+* Ruby >= 1.9.3
 * Rails ~> 4.2.0
 * Ext JS = 5.1.0
 
