@@ -5,6 +5,9 @@ Ext.Ajax.on 'beforerequest', ->
 Ext.Ajax.on 'requestcomplete', ->
   Netzke.ajaxCount -= 1
 
+Ext.Ajax.on 'requestexception', ->
+  Netzke.ajaxCount -= 1
+
 Ext.apply window,
   # Waits for all AJAX activity to stop, then calls the optional callback. If no callback was specified, returns a
   # promise. The first argument can be a number of milliseconds to wait before starting to listen to the AJAX activity
