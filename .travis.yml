@@ -1,0 +1,19 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.2.3
+
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - wget http://cdn.sencha.com/ext/gpl/ext-5.1.1-gpl.zip
+  - unzip -q ext-5.1.1-gpl.zip
+  - mv ext-5.1.1 spec/rails_app/public/extjs
+
+script:
+  - export DISPLAY=:99.0
+  - bundle exec rake
+
+branches:
+  only:
+    - master

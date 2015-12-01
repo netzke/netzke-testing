@@ -1,4 +1,4 @@
-# Netzke Testing [![Gem Version](https://fury-badge.herokuapp.com/rb/netzke-testing.png)](http://badge.fury.io/rb/netzke-testing)
+# Netzke Testing [![Build Status](https://travis-ci.org/netzke/netzke-testing.png?branch=master)](https://travis-ci.org/netzke/netzke-testing) [![Gem Version](https://fury-badge.herokuapp.com/rb/netzke-testing.png)](http://badge.fury.io/rb/netzke-testing)
 
 This gem helps with development and testing of Netzke components. In parcticular, it helps you with:
 
