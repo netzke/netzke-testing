@@ -57,12 +57,7 @@ Ext.apply window,
 
   valuesInColumn: (name, params = {}) ->
     grid = params.in || @grid()
-    out = []
-    i = 0
-    grid.getStore().each (r) ->
-      out.push valueInCell(name, i++, params)
-
-    out
+    valueInCell(name, i, params) for i in [0..grid.getStore().getCount()-1]
 
   # Example:
   # valueInCell 'author__name', 2
@@ -78,7 +73,7 @@ Ext.apply window,
   selectAllRows: (params) ->
     params ?= {}
     grid = params.in || @grid()
-    grid.getSelectionModel().selectAll()
+    grid.getSelectionModel().selectRange(0, grid.getStore().getCount() - 1)
 
   # rowDisplayValues in: grid('Books'), of: grid('Books').getStore().last()
   # Without parameters, assumes the first found grid and the selected row
@@ -106,7 +101,7 @@ Ext.apply window,
   selectLastRow: (params) ->
     params ?= {}
     grid = params.in || @grid()
-    grid.getSelectionModel().select(grid.getStore().last())
+    grid.getSelectionModel().select(grid.getStore().getCount() - 1)
 
   # Examples:
   # selectFirstRow()
@@ -114,7 +109,7 @@ Ext.apply window,
   selectFirstRow: (params) ->
     params ?= {}
     grid = params.in || @grid()
-    grid.getSelectionModel().select(grid.getStore().first())
+    grid.getSelectionModel().select(0)
 
   # Examples:
   # selectRow 5

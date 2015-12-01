@@ -98,5 +98,6 @@ Ext.apply window,
 
   _componentLike:(type,attr,value)->
     Ext.ComponentQuery.query(type+'['+attr+'='+value+']')[0] || type + " with " + attr + " '" + value + "'"
+
 # alias
 window.anywhere = window.somewhere
