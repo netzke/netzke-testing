@@ -168,7 +168,4 @@ No headless browsers like PhantomJS or WebKit were used for testing because our 
 * Ext JS = 5.1.0
 
 ---
-© 2015 [Max Gorin](https://twitter.com/mxgrn), released under the MIT license (see LICENSE).
-
-**Note** that Ext JS is licensed [differently](http://www.sencha.com/products/extjs/license/), and you may need to
-purchase a commercial license in order to use it in your projects!
+Copyright (c) 2009-2015 [Good Bit Labs Limited](http://goodbitlabs.com/), released under the GPLv3 license
