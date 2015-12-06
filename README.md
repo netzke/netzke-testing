@@ -157,6 +157,10 @@ Asynchronous helpers like `wait` can either call the provided callback function,
     .then
       doSomeMore()
 
+## Note on headless browser testing
+
+No headless browsers like PhantomJS or WebKit were used for testing because our tests rely heavily on HTMLElement's `click` event, which is only properly implemented in "real" browsers like Firefox (which is what we use).
+
 ## Requirements
 
 * Ruby >= 1.9.3
