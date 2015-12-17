@@ -89,7 +89,7 @@ Ext.apply window,
     i = -1
     return Ext.Array.map(Ext.DomQuery.select('table[data-recordid="'+record.internalId+'"] tbody tr td div'), (cell) ->
       i++
-      if visibleColumns[i].attrType == 'boolean'
+      if visibleColumns[i].type == 'boolean'
         record.get(visibleColumns[i].name)
       else
         cell.innerHTML
