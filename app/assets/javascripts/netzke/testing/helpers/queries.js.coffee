@@ -10,10 +10,15 @@ Ext.apply window,
   panelWithContent: (text) ->
     Ext.DomQuery.select("div.x-panel-body:contains(" + text + ")")[0] || 'panel with content ' + text
 
-  button: (text) ->
-    button = Ext.ComponentQuery.query("button{isVisible(true)}[text='"+text+"']")[0]
-    button ||= Ext.ComponentQuery.query("button{isVisible(true)}[tooltip='"+text+"']")[0]
+  button: (text, params = {}) ->
+    context = params.within || Ext.ComponentQuery
+
+    button = context.query("button{isVisible(true)}[text='"+text+"']")[0]
+    button ||= context.query("button{isVisible(true)}[tooltip='"+text+"']")[0]
     button || "button " + text
+
+  panel: (name) ->
+    Ext.getCmp(name)
 
   tool: (type) ->
     Ext.ComponentQuery.query("tool{isVisible(true)}[type='"+type+"']")[0] || 'tool ' + type
