@@ -133,3 +133,14 @@ Ext.apply window,
     g = g || @grid()
     e = g.getPlugin('celleditor')
     e.completeEdit()
+
+  # Double clicks currently selected row
+  dblclickRow: (params = {}) ->
+    grid = params.in || @grid()
+    record = grid.getSelectionModel().getSelection()[0]
+    rowEl = Ext.DomQuery.select('table[data-recordid="'+record.internalId+'"] tbody tr td div')[0]
+    event = new MouseEvent 'dblclick',
+      view: window
+      bubbles: true
+      cancelable: true
+    rowEl.dispatchEvent(event)
