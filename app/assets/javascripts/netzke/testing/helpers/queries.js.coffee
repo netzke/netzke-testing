@@ -37,26 +37,26 @@ Ext.apply window,
 
   combobox: (name) ->
     Ext.ComponentQuery.query("combo{isVisible(true)}[name='"+name+"']")[0] ||
-      'combobox ' + name
+      "combobox '#{name}'"
 
   icon: (tooltip) ->
     Ext.DomQuery.select('img[data-qtip="'+tooltip+'"]')[0] || 'icon ' + tooltip
 
   textfield: (name) ->
     Ext.ComponentQuery.query("textfield{isVisible(true)}[name='"+name+"']")[0] ||
-      'textfield ' + name
+      "textfield '#{name}'"
 
   numberfield: (name) ->
     Ext.ComponentQuery.query("numberfield{isVisible(true)}[name='"+name+"']")[0] ||
-      'numberfield ' + name
+      "numberfield '#{name}'"
 
   datefield: (name) ->
     Ext.ComponentQuery.query("datefield{isVisible(true)}[name='"+name+"']")[0] ||
-      'datefield ' + name
+      "datefield '#{name}'"
 
   xdatetime: (name) ->
     Ext.ComponentQuery.query("xdatetime{isVisible(true)}[name='"+name+"']")[0] ||
-      'xdatetime ' + name
+      "xdatetime '#{name}'"
 
   textFieldWith: (text) ->
     _componentLike "textfield", "value", text
@@ -74,7 +74,7 @@ Ext.apply window,
     Ext.WindowMgr.getActive()
 
   dateTimeFieldWith: (value) ->
-    res = 'xdatetime with value ' + value
+    res = "xdatetime with value '#{value}'"
     Ext.each Ext.ComponentQuery.query('xdatetime'), (item) ->
       if item.getValue().toString() == (new Date(value)).toString()
         res = item
@@ -82,7 +82,7 @@ Ext.apply window,
     res
 
   dateFieldWith: (value) ->
-    res = 'datefield with value ' + value
+    res = "datefield with value '#{value}'"
     Ext.each Ext.ComponentQuery.query('datefield'), (item) ->
       if item.getValue().toString() == (new Date(value)).toString()
         res = item
