@@ -11,7 +11,6 @@ Gem::Specification.new do |spec|
   spec.summary       = "Testing helpers for Netzke applications and gems"
   spec.description   = "Provides help with developing and testing Netzke components"
   spec.homepage      = "http://netzke.org"
-  spec.license       = "MIT"
 
   spec.files         = Dir["{app,config,lib,spec}/**/*", "[A-Z]*"] - ["Gemfile.lock"]
   spec.test_files    = spec.files.grep(%r{^(spec)/})
