@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = "Provides help with developing and testing Netzke components"
   spec.homepage      = "http://netzke.org"
 
-  spec.files         = Dir["{app,config,lib,spec}/**/*", "[A-Z]*"] - ["Gemfile.lock"]
+  spec.files         = Dir["{app,config,lib,spec}/**/*", "[A-Z]*"] - ["Gemfile.lock", "spec/rails_app/public/extjs"]
   spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ["lib"]
 
