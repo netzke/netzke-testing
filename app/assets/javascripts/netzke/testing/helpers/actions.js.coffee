@@ -24,13 +24,13 @@ Ext.apply window,
   #
   #   wait().then -> doSomething()
   wait: () ->
-    waitInCycle = (callback) ->
+    waitInCycle = (resolve) ->
       i = 0
       id = setInterval ->
         i += 1
         if i >= 100
           clearInterval(id)
-          callback.call()
+          resolve.call()
 
         # this way we ensure another 20ms cycle before we issue a callback
         i = 100 if Netzke.ajaxCount == 0
@@ -56,7 +56,6 @@ Ext.apply window,
       # wait(50).then ->
       #   waitAtLeast50ThenResolve()
       else
-        console.log("1", 1)
         delay = arguments[0]
         return new Promise (resolve, reject) ->
           setInterval ->
