@@ -111,9 +111,9 @@ helper provided by the `netzke_testing` gem. Here's an example (in `spec/user_gr
     feature GridWithDestructiveButton do
       it 'allows instant removing of all records with a single button click', js: true do
         10.times { FactoryGirl.create :user }
-        User.count.should == 10
+        expect(User.count).to eql == 10
         run_mocha_spec 'grid_with_destructive_button'
-        User.count.should == 0
+        expect(User.count).to eql == 0
       end
     end
 
