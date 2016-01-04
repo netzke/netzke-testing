@@ -1,3 +1,5 @@
+class MochaSpecsError < RuntimeError; end
+
 module Netzke::Testing::Helpers
   def run_mocha_spec(path, options = {})
     @component = options[:component] || path.camelcase
@@ -34,7 +36,6 @@ module Netzke::Testing::Helpers
       return {
         test: runner.test.title,
         success: runner.stats.failures == 0 && runner.stats.tests !=0,
-        error: runner.test.err && runner.test.err.toString(),
         errors: errors
       }
     JS
@@ -43,11 +44,10 @@ module Netzke::Testing::Helpers
       sleep 1.year if stop_on_error
 
       errors = result["errors"].each_with_index.map do |(title, error), i|
-        "#{i+1}) #{title}\n#{error}\n\n"
+        "#{i+1}) in '#{title}':\n#{error}\n"
       end
 
-      raise "Failures:\n#{errors.join}"
-      raise "Test failed: #{result["test"]}\n#{result["error"]}"
+      raise MochaSpecsError, errors.join
     end
   end
 end
