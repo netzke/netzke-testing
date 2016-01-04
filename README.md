@@ -168,4 +168,4 @@ No headless browsers like PhantomJS or WebKit were used for testing because our 
 * Ext JS = 5.1.0
 
 ---
-Copyright (c) 2009-2015 [Good Bit Labs Limited](http://goodbitlabs.com/), released under the GPLv3 license
+Copyright (c) 2009-2015 [Good Bit Labs](http://goodbitlabs.com/), released under the same license as [Ext JS](https://www.sencha.com/legal/#Sencha_Ext_JS)
