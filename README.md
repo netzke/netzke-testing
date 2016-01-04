@@ -29,8 +29,7 @@ example spec may look like this (in `spec/features/javascripts/user_grid.js.coff
 
     describe 'UserGrid', ->
       it 'shows proper title', ->
-        grid = Ext.ComponentQuery.query('panel[id="user_grid"]')[0]
-        expect(grid.getHeader().title).to.eql 'Test component'
+        expect(grid().getHeader().title).to.eql 'Test component'
 
 This spec can be run by appending the `spec` parameter to the url:
 
@@ -38,7 +37,7 @@ This spec can be run by appending the `spec` parameter to the url:
 
 Specs can be structured into directories. For example, let's say we have a namescope for admin components:
 
-    class Admin::UserGrid < Netzke::Basepack::Grid
+    class Admin::UserGrid < Netzke::Grid::Base
     end
 
 It makes sense to put the corresponding specs in `spec/features/javascripts/admin/user_grid.js.coffee`. In this case,
@@ -150,12 +149,15 @@ However, keep in mind, that this won't have effect on running specs manually in 
 
 Asynchronous helpers like `wait` can either call the provided callback function, or (if none was provided) return a promise, so you can do:
 
-    wait().
-    .then ->
-      doSomething()
-      wait()
-    .then
-      doSomeMore()
+    it 'does something asynchronous', ->
+      wait().
+      .then ->
+        doSomething()
+        wait()
+      .then
+        doSomeMore()
+
+NOTE: we should not use the `done` parameter here, as promises are handled differently than callbacks by Mocha.
 
 ## Note on headless browser testing
 
@@ -165,7 +167,7 @@ No headless browsers like PhantomJS or WebKit were used for testing because our 
 
 * Ruby >= 1.9.3
 * Rails ~> 4.2.0
-* Ext JS = 5.1.0
+* Ext JS = 5.1.1
 
 ---
 Copyright (c) 2009-2015 [Good Bit Labs](http://goodbitlabs.com/), released under the same license as [Ext JS](https://www.sencha.com/legal/#Sencha_Ext_JS)
