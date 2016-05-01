@@ -14,8 +14,11 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-group :development, :test do
+group :development do
   gem 'web-console', '~> 2.0'
+end
+
+group :development, :test do
   gem 'pry-rails'
   gem 'netzke-core', github: 'netzke/netzke-core', branch: 'master'
 end
