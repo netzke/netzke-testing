@@ -1,7 +1,7 @@
 require 'coffee-script'
 
 class Netzke::TestingController < ActionController::Base
-  before_filter :set_locale
+  before_action :set_locale
 
   def components
     component_name = params[:class].gsub("::", "_").underscore
@@ -11,7 +11,7 @@ class Netzke::TestingController < ActionController::Base
 
   def specs
     coffee = spec_file(params[:name])
-    render text: CoffeeScript.compile(coffee)
+    render js: CoffeeScript.compile(coffee)
   end
 
   private
