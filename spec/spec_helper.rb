@@ -2,6 +2,9 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../spec/rails_app/config/environment", __FILE__)
 require 'rspec/rails'
+require File.expand_path(File.dirname(__FILE__) + '/capybara_config')
+require 'capybara/rspec'
+require 'capybara/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -9,8 +12,6 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 require 'netzke/testing'
 
 RSpec.configure do |config|
-  require 'capybara/rspec'
-  require 'capybara/rails'
 
   Netzke::Testing.rspec_init(config)
 

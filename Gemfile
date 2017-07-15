@@ -11,7 +11,9 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'capybara-selenium'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do
@@ -20,5 +22,5 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'netzke-core', github: 'netzke/netzke-core', branch: 'master'
+  gem 'netzke-core', github: 'netzke/netzke-core', branch: '2-0-0'
 end
