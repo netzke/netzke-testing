@@ -87,7 +87,7 @@ Ext.apply window,
       visibleColumns.push(c) if c.isVisible()
 
     i = -1
-    return Ext.Array.map(Ext.DomQuery.select('table[data-recordid="'+record.internalId+'"] tbody tr td div'), (cell) ->
+    return Ext.Array.map(Ext.DomQuery.select('table[data-recordid="'+record.internalId+'"] tbody tr td div.x-grid-cell-inner'), (cell) ->
       i++
       if visibleColumns[i].type == 'boolean'
         record.get(visibleColumns[i].name)
