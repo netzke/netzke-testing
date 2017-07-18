@@ -36,14 +36,22 @@ Ext.apply window,
     panel.getHeader().getTitle().text
 
   combobox: (name) ->
-    Ext.ComponentQuery.query("combo{isVisible(true)}[name='"+name+"']")[0] ||
-      "combobox '#{name}'"
+    # TO DO
+    # Temporary remove broken isVisible filter
+    # Ext.ComponentQuery.query("combo{isVisible(true)}[name='"+name+"']")[0] ||
+    #
+    combos = Ext.ComponentQuery.query("combo[name='"+name+"']")
+    expanded = combos.find((combo) -> combo.isExpanded)
+
+    expanded || combos[0] || "combobox '#{name}'"
 
   icon: (tooltip) ->
     Ext.DomQuery.select('img[data-qtip="'+tooltip+'"]')[0] || 'icon ' + tooltip
 
   textfield: (name) ->
     Ext.ComponentQuery.query("textfield{isVisible(true)}[name='"+name+"']")[0] ||
+      activateField(name) ||
+      Ext.ComponentQuery.query("textfield{isVisible(false)}[name='"+name+"']")[0] ||
       "textfield '#{name}'"
 
   numberfield: (name) ->
@@ -57,6 +65,23 @@ Ext.apply window,
   xdatetime: (name) ->
     Ext.ComponentQuery.query("xdatetime{isVisible(true)}[name='"+name+"']")[0] ||
       "xdatetime '#{name}'"
+
+  activateField: (name) ->
+    # This is needed because Ext 6 addon for inline editing creates an input in dom
+    # only when it was activated (double clicked)
+
+    column = Ext.ComponentQuery.query("gridcolumn[name='"+name+"']")[0]
+    gridView = Ext.ComponentQuery.query("gridview")[0]
+    return unless column && gridView
+
+    cell = gridView.getCell(0, column)
+    return unless cell
+
+    clickEvent = document.createEvent('MouseEvents')
+    clickEvent.initEvent('dblclick', true, true);
+    cell.el.dom.dispatchEvent(clickEvent);
+    Ext.ComponentQuery.query("textfield{isVisible(true)}[name='"+name+"']")[0]
+
 
   textFieldWith: (text) ->
     _componentLike "textfield", "value", text
