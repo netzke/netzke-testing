@@ -26,3 +26,4 @@ script:
 branches:
   only:
     - master
+    - 6-5-0
