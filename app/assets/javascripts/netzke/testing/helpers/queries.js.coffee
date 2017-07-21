@@ -36,14 +36,8 @@ Ext.apply window,
     panel.getHeader().getTitle().text
 
   combobox: (name) ->
-    # TO DO
-    # Temporary remove broken isVisible filter
-    # Ext.ComponentQuery.query("combo{isVisible(true)}[name='"+name+"']")[0] ||
-    #
-    combos = Ext.ComponentQuery.query("combo[name='"+name+"']")
-    expanded = combos.find((combo) -> combo.isExpanded)
-
-    expanded || combos[0] || "combobox '#{name}'"
+    Ext.ComponentQuery.query("combo{isVisible(true)}[name='"+name+"']")[0] ||
+      "combobox '#{name}'"
 
   icon: (tooltip) ->
     Ext.DomQuery.select('img[data-qtip="'+tooltip+'"]')[0] || 'icon ' + tooltip
@@ -81,7 +75,6 @@ Ext.apply window,
     clickEvent.initEvent('dblclick', true, true);
     cell.el.dom.dispatchEvent(clickEvent);
     Ext.ComponentQuery.query("textfield{isVisible(true)}[name='"+name+"']")[0]
-
 
   textFieldWith: (text) ->
     _componentLike "textfield", "value", text
