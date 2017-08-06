@@ -165,9 +165,9 @@ No headless browsers like PhantomJS or WebKit were used for testing because our 
 
 ## Requirements
 
-* Ruby >= 1.9.3
-* Rails ~> 4.2.0
-* Ext JS = 5.1.1
+* Ruby >= 2.3.0
+* Rails ~> 5.1.0
+* Ext JS = 6.5.1
 
 ---
-Copyright (c) 2009-2016 [Good Bit Labs](http://goodbitlabs.com/), released under the same license as [Ext JS](https://www.sencha.com/legal/#Sencha_Ext_JS)
+Copyright (c) 2009-2017 [Good Bit Labs](http://goodbitlabs.com/), released under the same license as [Ext JS](https://www.sencha.com/legal/#Sencha_Ext_JS)
