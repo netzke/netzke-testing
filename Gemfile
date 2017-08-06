@@ -22,5 +22,5 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'netzke-core', github: 'netzke/netzke-core', branch: '6-5-0'
+  gem 'netzke-core', git: 'https://github.com/netzke/netzke-core.git', branch: '6-5-0'
 end
